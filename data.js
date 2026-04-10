@@ -1,28 +1,39 @@
 /**
  * ============================================================
- *  サイトデータ設定ファイル（もしもかんたんリンク方式）
+ *  サイトデータ設定ファイル
+ *  （楽天 + Amazon 両対応・自作カード方式）
  * ============================================================
  *
  * ▼ 商品の追加方法
  *
- *   1. もしもアフィリエイト（https://af.moshimo.com/）にログイン
- *   2. 「プロモーション検索」→「かんたんリンク」を開く
- *   3. 商品名やASIN、楽天URLで商品を検索
- *   4. 表示された商品の「HTMLソース」をコピー
- *   5. 下の products 配列に以下の形式で追加：
+ *   1. 楽天アフィリエイトで楽天アフィリエイトURLを取得
+ *      (https://affiliate.rakuten.co.jp/)
+ *      → 楽天会員なら審査なしで即利用可能
+ *
+ *   2. （審査通過後）Amazonアソシエイトで商品リンクを取得
+ *      (https://affiliate.amazon.co.jp/)
+ *      → Amazonはまだ未承認なら amazonUrl は null のままでOK
+ *
+ *   3. 商品画像URLを取得
+ *      ◎ 楽天の商品ページから画像URLをコピー
+ *        （楽天商品ページを右クリック→画像アドレスをコピー）
+ *      ◎ または images/ フォルダに画像を置いてパスを指定
+ *
+ *   4. 下の products 配列に追加：
  *
  *   {
- *     number: 2,                   // 商品番号（Instagramの紹介用）
- *     keyword: "抱き枕",            // 検索用キーワード（省略可）
- *     html: `
- *       <!-- ↓ ここにもしもからコピーしたHTMLを貼り付け ↓ -->
- *       <div class="easyLink-box">...</div>
- *     `
+ *     number:      2,
+ *     title:       "商品名をここに入力",
+ *     description: "短い説明文（省略可）",
+ *     image:       "画像URL または images/xxx.jpg",
+ *     rakutenUrl:  "https://hb.afl.rakuten.co.jp/...",
+ *     amazonUrl:   null  // Amazon未承認時は null、承認後にURLを追加
  *   },
  *
- *   ※ html の中身はバッククォート ` で囲んでください
- *   ※ HTMLに ` や $ が含まれている場合は \` や \$ にエスケープが必要です
- *   ※ Yahoo!ショッピングのボタンは CSS で自動的に非表示になります
+ *   ※ amazonUrl を null または省略すると、楽天ボタンのみ表示されます
+ *   ※ rakutenUrl を null にすると、Amazonボタンのみ表示されます
+ *   ※ 両方 null にすると「リンク準備中」と表示されます
+ *   ※ 上にある商品ほど先に表示されます
  *
  * ▼ プロフィール画像の設定
  *   images フォルダを作成して画像を入れ、
@@ -36,8 +47,8 @@ var SITE_DATA = {
   /* ===== プロフィール ===== */
   profile: {
     name:  "ハナのおすすめ",
-    image: null,
-    bio:   null
+    image: null,                    // 例: "images/profile.jpg"
+    bio:   null                     // 例: "毎日のくらしを便利に♪"
   },
 
   /* ===== お知らせバナー ===== */
@@ -47,26 +58,31 @@ var SITE_DATA = {
     textColor:       "#e8f9fc"
   },
 
+  /* ===== フッターの表記（Amazonアソシエイト・楽天アフィリエイト） ===== */
+  disclosure: "当サイトはAmazon.co.jpを宣伝しリンクすることによってサイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイトプログラムである、Amazonアソシエイト・プログラムの参加者です。",
+
   /* ===== 商品リスト ===== */
   products: [
 
-    // ▼ サンプル商品（もしもかんたんリンクを取得したら下の html を置き換えてください） ▼
+    // ▼ サンプル商品 ▼（実際のデータに差し替えてください）
     {
-      number: 1,
-      keyword: "サンプル商品",
-      html: ``  // ← ここにもしもアフィリエイトの「かんたんリンク」HTMLを貼り付けます
+      number:      1,
+      title:       "サンプル商品のタイトルがここに入ります",
+      description: "短い説明文をここに入れます（省略可）",
+      image:       null,                           // 画像URL（省略可）
+      rakutenUrl:  "https://www.rakuten.co.jp/",   // 楽天アフィリエイトURL
+      amazonUrl:   null                            // Amazon承認後にURLを追加
     }
 
-    // ▼ 新しい商品を追加する場合は、上の } の後ろに「,」を付けて次のように追加 ▼
+    // ▼ 新しい商品を追加する場合は、上の } の後ろに「,」を付けて追加 ▼
     //
     // ,{
-    //   number: 2,
-    //   keyword: "キーワード",
-    //   html: `
-    //     <div class="easyLink-box">
-    //       ... ここにもしもからコピーしたHTML ...
-    //     </div>
-    //   `
+    //   number:      2,
+    //   title:       "新しい商品名",
+    //   description: "短い説明文",
+    //   image:       "https://thumbnail.image.rakuten.co.jp/...",
+    //   rakutenUrl:  "https://hb.afl.rakuten.co.jp/...",
+    //   amazonUrl:   "https://www.amazon.co.jp/..."
     // }
 
   ]

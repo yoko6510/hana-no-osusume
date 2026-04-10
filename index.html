@@ -17,6 +17,7 @@
       font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
+      color: #222;
     }
 
     /* ===== お知らせバナー ===== */
@@ -33,12 +34,12 @@
     .notice-track {
       display: flex;
       width: max-content;
-      animation: marquee 30s linear infinite;
+      animation: marquee 40s linear infinite;
     }
 
     .notice-track span {
       white-space: nowrap;
-      font-size: 12px;
+      font-size: 11.5px;
       letter-spacing: 0.02em;
     }
 
@@ -132,7 +133,7 @@
 
     /* ===== プロフィール ===== */
     .profile {
-      padding: 28px 20px 16px;
+      padding: 28px 20px 14px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -140,16 +141,17 @@
     }
 
     .profile-avatar-wrap {
-      width: 80px;
-      height: 80px;
+      width: 84px;
+      height: 84px;
       border-radius: 50%;
       overflow: hidden;
       margin-bottom: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 42px;
+      font-size: 44px;
       flex-shrink: 0;
+      box-shadow: 0 3px 12px rgba(244, 184, 160, 0.35);
     }
 
     .profile-avatar-wrap img {
@@ -162,7 +164,7 @@
       font-size: 18px;
       font-weight: 700;
       color: #111;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .profile-bio {
@@ -170,11 +172,12 @@
       color: #666;
       line-height: 1.6;
       white-space: pre-wrap;
+      margin-top: 2px;
     }
 
     /* ===== 検索バー ===== */
     .search-wrap {
-      padding: 0 16px 12px;
+      padding: 12px 16px 10px;
     }
 
     .search-box {
@@ -210,6 +213,7 @@
       font-size: 14px;
       color: #222;
       min-width: 0;
+      font-family: inherit;
     }
 
     .search-input::placeholder {
@@ -236,273 +240,204 @@
       padding: 0 16px 48px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
-    .product-item {
+    .product-card {
       position: relative;
       background: #fff;
       border-radius: 14px;
-      padding: 14px 14px 12px;
+      padding: 12px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.09);
       transition: transform 0.18s ease, box-shadow 0.18s ease;
+      overflow: hidden;
     }
 
-    .product-item:hover {
+    .product-card:hover {
       transform: translateY(-2px);
       box-shadow: 0 5px 16px rgba(0,0,0,0.14);
     }
 
-    .product-item.hidden {
+    .product-card.hidden {
       display: none;
     }
 
-    /* ===== 番号バッジ ===== */
+    .product-main {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    /* ===== サムネイル ===== */
+    .product-thumb {
+      position: relative;
+      width: 92px;
+      height: 92px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f5f5f5, #ebebeb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-thumb-placeholder {
+      font-size: 32px;
+      color: #ccc;
+    }
+
+    /* 番号バッジ（サムネ左上） */
     .number-badge {
+      position: absolute;
+      top: 6px;
+      left: 6px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 28px;
-      height: 24px;
-      padding: 0 9px;
+      min-width: 24px;
+      height: 22px;
+      padding: 0 7px;
       background: linear-gradient(135deg, #f4b8a0, #ee8c75);
       color: #fff;
-      border-radius: 12px;
+      border-radius: 11px;
       font-weight: 700;
-      font-size: 12px;
-      margin-bottom: 10px;
+      font-size: 11px;
       letter-spacing: 0.02em;
-      box-shadow: 0 2px 5px rgba(238, 140, 117, 0.35);
+      box-shadow: 0 2px 5px rgba(238, 140, 117, 0.45);
+      backdrop-filter: blur(4px);
     }
 
-    /* ===== 商品HTMLコンテナ ===== */
-    .product-embed {
-      /* もしもかんたんリンクのHTMLを包むコンテナ */
+    /* ===== 商品情報 ===== */
+    .product-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-top: 2px;
     }
 
-    /* ===== サンプル/プレースホルダー ===== */
+    .product-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      line-height: 1.45;
+      color: #222;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .product-desc {
+      font-size: 11.5px;
+      color: #888;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-top: 2px;
+    }
+
+    /* ===== ボタン ===== */
+    .product-buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .btn-shop {
+      flex: 1;
+      padding: 9px 8px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      color: #fff;
+      transition: opacity 0.15s, transform 0.1s;
+      white-space: nowrap;
+    }
+
+    .btn-shop:hover  { opacity: 0.88; }
+    .btn-shop:active { transform: scale(0.96); }
+
+    .btn-rakuten {
+      background: linear-gradient(135deg, #c80000, #a30000);
+      box-shadow: 0 2px 6px rgba(200, 0, 0, 0.25);
+    }
+
+    .btn-amazon {
+      background: linear-gradient(135deg, #ff9900, #e68a00);
+      box-shadow: 0 2px 6px rgba(255, 153, 0, 0.25);
+      color: #fff;
+    }
+
+    .btn-icon {
+      font-size: 13px;
+    }
+
+    /* ===== サンプルプレースホルダー ===== */
     .product-sample {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 30px 20px;
+      padding: 26px 16px;
       border: 2px dashed #e0e0e0;
       border-radius: 10px;
       color: #888;
       text-align: center;
+      margin-top: 10px;
     }
 
     .product-sample .big-emoji {
-      font-size: 40px;
-      margin-bottom: 8px;
-    }
-
-    .product-sample .sample-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: #555;
+      font-size: 38px;
       margin-bottom: 6px;
     }
 
+    .product-sample .sample-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
     .product-sample .sample-desc {
-      font-size: 11px;
+      font-size: 10.5px;
       line-height: 1.6;
+      color: #aaa;
+    }
+
+    /* ===== フッター ===== */
+    .footer {
+      padding: 20px 20px 32px;
+      text-align: center;
+      font-size: 10.5px;
+      color: #aaa;
+      line-height: 1.7;
+    }
+
+    .footer .disclosure {
+      font-size: 10px;
       color: #999;
-    }
-
-    /* ================================== */
-    /* もしもかんたんリンクのカスタマイズ     */
-    /* ================================== */
-
-    /* 外側のボックスはリセット（既に .product-item で装飾済み） */
-    .product-embed .easyLink-box,
-    .product-embed .easyLink-box-full,
-    .product-embed div[class*="easyLink"] {
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      max-width: 100% !important;
-      width: 100% !important;
-    }
-
-    /* 商品部分を横並びに */
-    .product-embed .easyLink-box,
-    .product-embed .easyLink-box-full {
-      display: flex !important;
-      flex-direction: row !important;
-      align-items: flex-start !important;
-      gap: 12px !important;
-      flex-wrap: wrap !important;
-    }
-
-    /* 画像の大きさを適度に */
-    .product-embed .easyLink-image,
-    .product-embed .easyLink-image-box,
-    .product-embed div[class*="easyLink-image"] {
-      flex: 0 0 90px !important;
-      width: 90px !important;
-      max-width: 90px !important;
-      min-width: 90px !important;
-    }
-
-    .product-embed .easyLink-image img,
-    .product-embed .easyLink-image-box img,
-    .product-embed div[class*="easyLink-image"] img {
-      width: 100% !important;
-      height: auto !important;
-      max-height: 90px !important;
-      object-fit: contain !important;
-    }
-
-    /* 情報部分 */
-    .product-embed .easyLink-info,
-    .product-embed div[class*="easyLink-info"] {
-      flex: 1 1 180px !important;
-      min-width: 0 !important;
-      padding: 0 !important;
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 6px !important;
-    }
-
-    /* タイトルのスタイル */
-    .product-embed .easyLink-info-item,
-    .product-embed .easyLink-info-item a,
-    .product-embed div[class*="easyLink-title"] a,
-    .product-embed .easyLink-info h5,
-    .product-embed .easyLink-info h5 a {
-      font-size: 13px !important;
-      font-weight: 600 !important;
-      color: #222 !important;
-      line-height: 1.5 !important;
-      text-decoration: none !important;
-      display: -webkit-box !important;
-      -webkit-line-clamp: 2 !important;
-      -webkit-box-orient: vertical !important;
-      overflow: hidden !important;
-      text-overflow: ellipsis !important;
-    }
-
-    /* メーカー・型番など不要な情報を非表示 */
-    .product-embed .easyLink-info-maker,
-    .product-embed .easyLink-info-model,
-    .product-embed div[class*="easyLink-maker"],
-    .product-embed div[class*="easyLink-model"] {
-      display: none !important;
-    }
-
-    /* ボタングループ */
-    .product-embed .easyLink-info-btn,
-    .product-embed p.easyLink-info-btn,
-    .product-embed div[class*="easyLink-btn"] {
-      display: flex !important;
-      flex-wrap: wrap !important;
-      gap: 6px !important;
-      margin: 6px 0 0 0 !important;
-      padding: 0 !important;
-      width: 100% !important;
-    }
-
-    /* ボタン全般 */
-    .product-embed .easyLink-info-btn a,
-    .product-embed p.easyLink-info-btn a,
-    .product-embed div[class*="easyLink-btn"] a {
-      flex: 1 1 calc(50% - 3px) !important;
-      min-width: 80px !important;
-      padding: 8px 10px !important;
-      margin: 0 !important;
-      border-radius: 6px !important;
-      font-size: 11px !important;
-      font-weight: 700 !important;
-      text-align: center !important;
-      text-decoration: none !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      line-height: 1.3 !important;
-      box-sizing: border-box !important;
-      transition: opacity 0.15s, transform 0.1s !important;
-      color: #fff !important;
-    }
-
-    .product-embed .easyLink-info-btn a:hover,
-    .product-embed p.easyLink-info-btn a:hover,
-    .product-embed div[class*="easyLink-btn"] a:hover {
-      opacity: 0.85 !important;
-    }
-
-    .product-embed .easyLink-info-btn a:active,
-    .product-embed p.easyLink-info-btn a:active,
-    .product-embed div[class*="easyLink-btn"] a:active {
-      transform: scale(0.97) !important;
-    }
-
-    /* Amazonボタン */
-    .product-embed a[href*="amazon.co.jp"],
-    .product-embed a[href*="amzn.to"],
-    .product-embed a[href*="amzn.asia"],
-    .product-embed a[href*="amazon-adsystem"],
-    .product-embed .easyLink-info-btn-amazon,
-    .product-embed .easyLink-info-btn a.amazon {
-      background: #ff9900 !important;
-      color: #fff !important;
-    }
-
-    /* 楽天ボタン */
-    .product-embed a[href*="rakuten.co.jp"],
-    .product-embed a[href*="hb.afl.rakuten"],
-    .product-embed a[href*="a.r10.to"],
-    .product-embed .easyLink-info-btn-rakuten,
-    .product-embed .easyLink-info-btn a.rakuten {
-      background: #bf0000 !important;
-      color: #fff !important;
-    }
-
-    /* Yahoo!ショッピングボタンを完全非表示 */
-    .product-embed a[href*="shopping.yahoo"],
-    .product-embed a[href*="shp.yahoo"],
-    .product-embed a[href*="paypaymall"],
-    .product-embed a[href*="ck.jp.ap.valuecommerce"],
-    .product-embed .easyLink-info-btn-yahoo,
-    .product-embed .easyLink-info-btn a.yahoo,
-    .product-embed .easyLink-info-btn a[href*="yahoo"] {
-      display: none !important;
-    }
-
-    /* 価格表示 */
-    .product-embed .easyLink-info-price,
-    .product-embed div[class*="price"] {
-      font-size: 12px !important;
-      color: #666 !important;
-      font-weight: 600 !important;
-      margin: 2px 0 !important;
-    }
-
-    /* もしものPR表記など、小さい文字 */
-    .product-embed small,
-    .product-embed .easyLink-info-small {
-      font-size: 10px !important;
-      color: #aaa !important;
-    }
-
-    /* 広い画面での調整 */
-    @media screen and (min-width: 440px) {
-      .product-embed .easyLink-image,
-      .product-embed .easyLink-image-box,
-      .product-embed div[class*="easyLink-image"] {
-        flex: 0 0 100px !important;
-        width: 100px !important;
-        max-width: 100px !important;
-        min-width: 100px !important;
-      }
-      .product-embed .easyLink-image img,
-      .product-embed .easyLink-image-box img,
-      .product-embed div[class*="easyLink-image"] img {
-        max-height: 100px !important;
-      }
+      padding: 8px 12px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      margin-top: 10px;
+      line-height: 1.5;
     }
 
     /* ===== トースト通知 ===== */
@@ -534,6 +469,13 @@
       text-align: center;
       color: #aaa;
       font-size: 14px;
+    }
+
+    /* スマホ向け微調整 */
+    @media screen and (max-width: 360px) {
+      .product-thumb { width: 80px; height: 80px; }
+      .product-title { font-size: 13px; }
+      .btn-shop { font-size: 11px; padding: 8px 6px; }
     }
   </style>
 </head>
@@ -595,6 +537,12 @@
     <div class="state-message">読み込み中...</div>
   </div>
 
+  <!-- フッター -->
+  <footer class="footer">
+    <div>© <span id="year"></span> <span id="footer-name"></span></div>
+    <div class="disclosure" id="disclosure"></div>
+  </footer>
+
 </div>
 
 <!-- トースト通知 -->
@@ -612,6 +560,17 @@
     return;
   }
 
+  /* ---------- ユーティリティ ---------- */
+  function escapeHtml(s) {
+    if (s == null) return '';
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   /* ---------- バナー ---------- */
   var banner = document.getElementById('notice-banner');
   var track  = document.getElementById('notice-track');
@@ -620,10 +579,10 @@
     banner.style.backgroundColor = data.notice.backgroundColor || '#343434';
     var txt   = data.notice.text + '\u3000\u3000\u3000\u3000\u3000';
     var color = data.notice.textColor || '#e8f9fc';
-    var block = Array(20).fill(txt).join('');
+    var block = Array(15).fill(txt).join('');
     track.innerHTML =
-      '<span style="color:' + color + '">' + block + '</span>' +
-      '<span style="color:' + color + '" aria-hidden="true">' + block + '</span>';
+      '<span style="color:' + color + '">' + escapeHtml(block) + '</span>' +
+      '<span style="color:' + color + '" aria-hidden="true">' + escapeHtml(block) + '</span>';
   }
 
   /* ---------- プロフィール ---------- */
@@ -642,10 +601,19 @@
       document.getElementById('profile-avatar-fallback').style.display = 'none';
       img.style.display = 'block';
       document.getElementById('nav-avatar-wrap').innerHTML =
-        '<img src="' + data.profile.image + '" alt="' + siteName +
+        '<img src="' + escapeHtml(data.profile.image) + '" alt="' + escapeHtml(siteName) +
         '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';
     };
     img.src = data.profile.image;
+  }
+
+  /* ---------- フッター ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('footer-name').textContent = siteName;
+  if (data.disclosure) {
+    document.getElementById('disclosure').textContent = data.disclosure;
+  } else {
+    document.getElementById('disclosure').style.display = 'none';
   }
 
   /* ---------- 商品リスト ---------- */
@@ -660,39 +628,74 @@
   list.innerHTML = '';
 
   products.forEach(function (p) {
-    var item = document.createElement('div');
-    item.className = 'product-item';
-    item.dataset.number  = p.number != null ? String(p.number) : '';
-    item.dataset.keyword = (p.keyword || p.title || '').toLowerCase();
+    var card = document.createElement('div');
+    card.className = 'product-card';
+    card.dataset.number  = p.number != null ? String(p.number) : '';
+    card.dataset.keyword = ((p.title || '') + ' ' + (p.description || '') + ' ' + (p.keyword || '')).toLowerCase();
 
-    var inner = '';
-
-    // 番号バッジ
-    if (p.number != null) {
-      inner += '<span class="number-badge">No.' + p.number + '</span>';
-    }
-
-    // 商品HTML または サンプルプレースホルダー
-    if (p.html && p.html.trim()) {
-      inner += '<div class="product-embed">' + p.html + '</div>';
+    // --- サムネイル ---
+    var thumbHtml;
+    if (p.image) {
+      thumbHtml =
+        '<div class="product-thumb">' +
+          (p.number != null ? '<span class="number-badge">' + escapeHtml(String(p.number)) + '</span>' : '') +
+          '<img src="' + escapeHtml(p.image) + '" alt="' + escapeHtml(p.title || '') + '"' +
+          ' onerror="this.outerHTML=&quot;<span class=\\&quot;product-thumb-placeholder\\&quot;>🛍️</span>&quot;;">' +
+        '</div>';
     } else {
-      inner +=
-        '<div class="product-sample">' +
-          '<div class="big-emoji">\uD83D\uDCCC</div>' +
-          '<div class="sample-title">' + (p.keyword || p.title || 'サンプル商品') + '</div>' +
-          '<div class="sample-desc">data.js\u306e html \u30d5\u30a3\u30fc\u30eb\u30c9\u306b<br>\u3082\u3057\u3082\u304b\u3093\u305f\u3093\u30ea\u30f3\u30af\u306eHTML\u3092\u8cbc\u308a\u4ed8\u3051\u3066\u304f\u3060\u3055\u3044</div>' +
+      thumbHtml =
+        '<div class="product-thumb">' +
+          (p.number != null ? '<span class="number-badge">' + escapeHtml(String(p.number)) + '</span>' : '') +
+          '<span class="product-thumb-placeholder">🛍️</span>' +
         '</div>';
     }
 
-    item.innerHTML = inner;
-    list.appendChild(item);
+    // --- タイトル・説明 ---
+    var infoHtml =
+      '<div class="product-info">' +
+        '<div class="product-title">' + escapeHtml(p.title || '商品名未設定') + '</div>' +
+        (p.description ? '<div class="product-desc">' + escapeHtml(p.description) + '</div>' : '') +
+      '</div>';
+
+    // --- メイン行 ---
+    var mainHtml = '<div class="product-main">' + thumbHtml + infoHtml + '</div>';
+
+    // --- ボタン ---
+    var btnHtml = '';
+    if (p.rakutenUrl || p.amazonUrl) {
+      btnHtml = '<div class="product-buttons">';
+      if (p.rakutenUrl) {
+        btnHtml +=
+          '<a class="btn-shop btn-rakuten" href="' + escapeHtml(p.rakutenUrl) + '"' +
+          ' target="_blank" rel="noopener noreferrer sponsored">' +
+          '<span class="btn-icon">🛍</span>楽天で見る</a>';
+      }
+      if (p.amazonUrl) {
+        btnHtml +=
+          '<a class="btn-shop btn-amazon" href="' + escapeHtml(p.amazonUrl) + '"' +
+          ' target="_blank" rel="noopener noreferrer sponsored">' +
+          '<span class="btn-icon">📦</span>Amazonで見る</a>';
+      }
+      btnHtml += '</div>';
+    } else {
+      // リンク未設定ならサンプル表示
+      btnHtml =
+        '<div class="product-sample">' +
+          '<div class="big-emoji">📌</div>' +
+          '<div class="sample-title">リンク準備中</div>' +
+          '<div class="sample-desc">data.js に rakutenUrl / amazonUrl を設定してください</div>' +
+        '</div>';
+    }
+
+    card.innerHTML = mainHtml + btnHtml;
+    list.appendChild(card);
   });
 
   /* ---------- 検索機能 ---------- */
   var searchInput = document.getElementById('search-input');
   var searchBox   = document.getElementById('search-box');
   var searchClear = document.getElementById('search-clear');
-  var allItems    = document.querySelectorAll('.product-item');
+  var allCards    = document.querySelectorAll('.product-card');
 
   function filterItems() {
     var q = (searchInput.value || '').trim().toLowerCase();
@@ -700,23 +703,22 @@
     else   searchBox.classList.remove('has-value');
 
     var hitCount = 0;
-    allItems.forEach(function (it) {
-      var n = it.dataset.number;
-      var k = it.dataset.keyword;
+    allCards.forEach(function (c) {
+      var n = c.dataset.number;
+      var k = c.dataset.keyword;
       var matched =
         !q ||
         n === q ||
         (n && n.indexOf(q) !== -1) ||
         (k && k.indexOf(q) !== -1);
       if (matched) {
-        it.classList.remove('hidden');
+        c.classList.remove('hidden');
         hitCount++;
       } else {
-        it.classList.add('hidden');
+        c.classList.add('hidden');
       }
     });
 
-    // 検索結果がない場合の表示
     var noResult = document.getElementById('no-result-msg');
     if (hitCount === 0 && q) {
       if (!noResult) {
