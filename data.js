@@ -66,11 +66,11 @@ var SITE_DATA = {
 
     {
       number:      1,
-      title:       "BRUNO コンパクトホットプレート",
+      title:       "Fanttik G9 Nano 電動スピンスクラバー",
       description: null,
-      image:       "https://thumbnail.image.rakuten.co.jp/@0_mall/bruno-official/cabinet/item_main/2019/white/7760307.jpg?_ex=240x240",
-      rakutenUrl:  "https://a.r10.to/h5EeEb",
-      amazonUrl:   "https://amzn.to/41t6AnV"
+      image:       "https://thumbnail.image.rakuten.co.jp/@0_mall/drivetouring/cabinet/12668278/12668301/g9_nano_main.jpg?_ex=400x400",
+      rakutenUrl:  "https://a.r10.to/hPdmB0",
+      amazonUrl:   "https://amzn.to/3PTdq3H"
     }
 
     // ▼ 新しい商品を追加する場合は、上の } の後ろに「,」を付けて追加 ▼
