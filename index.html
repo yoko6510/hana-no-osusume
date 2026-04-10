@@ -290,27 +290,6 @@
       color: #ccc;
     }
 
-    /* 番号バッジ（サムネ左上） */
-    .number-badge {
-      position: absolute;
-      top: 6px;
-      left: 6px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 24px;
-      height: 22px;
-      padding: 0 7px;
-      background: linear-gradient(135deg, #f4b8a0, #ee8c75);
-      color: #fff;
-      border-radius: 11px;
-      font-weight: 700;
-      font-size: 11px;
-      letter-spacing: 0.02em;
-      box-shadow: 0 2px 5px rgba(238, 140, 117, 0.45);
-      backdrop-filter: blur(4px);
-    }
-
     /* ===== 商品情報 ===== */
     .product-info {
       flex: 1;
@@ -321,7 +300,33 @@
       padding-top: 2px;
     }
 
+    .product-title-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    /* 番号バッジ（商品名の左） */
+    .number-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 26px;
+      height: 22px;
+      padding: 0 8px;
+      background: linear-gradient(135deg, #f4b8a0, #ee8c75);
+      color: #fff;
+      border-radius: 11px;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.02em;
+      box-shadow: 0 2px 5px rgba(238, 140, 117, 0.45);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
     .product-title {
+      flex: 1;
       font-size: 13.5px;
       font-weight: 600;
       line-height: 1.45;
@@ -833,22 +838,26 @@
     if (p.image) {
       thumbHtml =
         '<div class="product-thumb">' +
-          (p.number != null ? '<span class="number-badge">' + escapeHtml(String(p.number)) + '</span>' : '') +
           '<img src="' + escapeHtml(p.image) + '" alt="' + escapeHtml(p.title || '') + '"' +
           ' onerror="this.outerHTML=&quot;<span class=\\&quot;product-thumb-placeholder\\&quot;>🛍️</span>&quot;;">' +
         '</div>';
     } else {
       thumbHtml =
         '<div class="product-thumb">' +
-          (p.number != null ? '<span class="number-badge">' + escapeHtml(String(p.number)) + '</span>' : '') +
           '<span class="product-thumb-placeholder">🛍️</span>' +
         '</div>';
     }
 
     // --- タイトル・説明 ---
+    var badgeHtml = (p.number != null)
+      ? '<span class="number-badge">' + escapeHtml(String(p.number)) + '</span>'
+      : '';
     var infoHtml =
       '<div class="product-info">' +
-        '<div class="product-title">' + escapeHtml(p.title || '商品名未設定') + '</div>' +
+        '<div class="product-title-row">' +
+          badgeHtml +
+          '<div class="product-title">' + escapeHtml(p.title || '商品名未設定') + '</div>' +
+        '</div>' +
         (p.description ? '<div class="product-desc">' + escapeHtml(p.description) + '</div>' : '') +
       '</div>';
 
