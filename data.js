@@ -65,6 +65,15 @@ var SITE_DATA = {
   products: [
 
     {
+      number:      2,
+      title:       "Scrub Daddy スクラブダディ スポンジ",
+      description: null,
+      image:       "https://thumbnail.image.rakuten.co.jp/@0_mall/scrubdaddy/cabinet/12631742/imgrc0113129781.jpg?_ex=400x400",
+      rakutenUrl:  "https://a.r10.to/hkl0On",
+      amazonUrl:   "https://amzn.to/3Qil3Rb"
+    },
+
+    {
       number:      1,
       title:       "Fanttik G9 Nano 電動スピンスクラバー",
       description: null,
