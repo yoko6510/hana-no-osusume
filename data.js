@@ -65,6 +65,15 @@ var SITE_DATA = {
   products: [
 
     {
+      number:      3,
+      title:       "アングリーママ",
+      description: null,
+      image:       "https://thumbnail.image.rakuten.co.jp/@0_mall/minatoenterprise/cabinet/12098800/compass1763105935.jpg?_ex=400x400",
+      rakutenUrl:  "https://a.r10.to/hgwk0E",
+      amazonUrl:   "https://amzn.to/4tAunhG"
+    },
+
+    {
       number:      2,
       title:       "Scrub Daddy スクラブダディ スポンジ",
       description: null,
